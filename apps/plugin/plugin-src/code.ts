@@ -30,7 +30,7 @@ export const defaultPluginSettings: PluginSettings = {
   embedImages: false,
   embedVectors: true,
   htmlGenerationMode: "html",
-  tailwindGenerationMode: "jsx",
+  tailwindGenerationMode: "html",
   baseFontSize: 16,
   useTailwind4: false,
 };
@@ -323,14 +323,12 @@ const codegenMode = async () => {
           ];
 
         case "tailwind":
-        case "tailwind_jsx":
           return [
             {
               title: "Code",
               code: await tailwindMain(convertedSelection, {
                 ...userPluginSettings,
-                tailwindGenerationMode:
-                  language === "tailwind_jsx" ? "jsx" : "html",
+                tailwindGenerationMode: "html",
               }),
               language: "HTML",
             },

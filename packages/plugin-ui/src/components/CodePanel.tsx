@@ -158,32 +158,6 @@ const CodePanel = (props: CodePanelProps) => {
             onPreferenceChanged={onPreferenceChanged}
           />
 
-          {/* Framework-specific options */}
-          {selectableSettingsFiltered.length > 0 && (
-            <div className="mt-1 mb-2 last:mb-0">
-              <p className="text-xs font-medium text-gray-700 dark:text-gray-300">
-                {selectedFramework} Options
-              </p>
-              {selectableSettingsFiltered.map((preference) => {
-                // Regular toggle buttons for other options
-                return (
-                  <FrameworkTabs
-                    options={preference.options}
-                    selectedValue={
-                      (settings?.[preference.propertyName] ??
-                        preference.options.find((option) => option.isDefault)
-                          ?.value ??
-                        "") as string
-                    }
-                    onChange={(value) => {
-                      onPreferenceChanged(preference.propertyName, value);
-                    }}
-                  />
-                );
-              })}
-            </div>
-          )}
-
           {/* Styling preferences with custom prefix for Tailwind */}
           {(stylingPreferences.length > 0 ||
             selectedFramework === "Tailwind") && (
